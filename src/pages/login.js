@@ -1,11 +1,10 @@
 import React from "react";
+import Header from "../components/header";
 
 const Login = () => {
 
   return(
-    <div>
-      Login Page
-    </div>
+    <Header title="Login page." />
   );
 }
 
