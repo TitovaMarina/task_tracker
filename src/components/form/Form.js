@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import Box from '@mui/material/Box';
-
 
 const StyledFormContainer = styled.div`
   margin: auto;

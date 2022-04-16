@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import Form from "../components/form";
 import DefaultLayout from "../components/defaultLayout";
@@ -6,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   margin-left: 5px;
   text-decoration: none;
   :hover{
@@ -48,7 +49,7 @@ const Login = () => {
           alignItems: 'center',
           fontSize: '15px'
         }}>
-          Don't have an account? <StyledLink href="">Register</StyledLink>
+          Don't have an account? <StyledLink to="/register">Register</StyledLink>
         </Box>
 
 
