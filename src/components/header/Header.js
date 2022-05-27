@@ -16,13 +16,21 @@ const StyledTitle = styled.h1`
   font-size: 25px;
 `
 
-const Header = ({ title }) => {
+const StyledBox = styled.h1`
+  display: flex;
+  justify-content: flex-end;
+`
+
+const Header = ({ title, children }) => {
 
   return(
       <StyledHeader>
         <StyledTitle>
           {title}
         </StyledTitle>
+        <StyledBox>
+          {children}
+        </StyledBox>
       </StyledHeader>
 
   );
