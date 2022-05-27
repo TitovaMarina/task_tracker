@@ -1,28 +1,21 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
-import styled from 'styled-components';
 import Form from "../components/form";
+import Link from "../components/link";
 import DefaultLayout from "../components/defaultLayout";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-const StyledLink = styled(Link)`
-  margin-left: 5px;
-  text-decoration: none;
-  :hover{
-    text-decoration: underline;
-  }
-`
-const initialLoginState = {login: "", password: "" };
 
+const initialLoginState = { login: "", password: "" };
+const REGISTER_LINK_TEXT = "Don't have an account?"
 
 const Login = () => {
 
   const [formState, setFormState] = useState(initialLoginState);
 
   const formHandlers = (event) => {
-    const { value, id} = event.target;
+    const { value, id } = event.target;
     setFormState({...formState, [id]: event.type === "change" ? value : value.trim()});
   }
 
@@ -49,10 +42,9 @@ const Login = () => {
           alignItems: 'center',
           fontSize: '15px'
         }}>
-          Don't have an account? <StyledLink to="/register">Register</StyledLink>
+          {REGISTER_LINK_TEXT}<Link to={"/register"}>Register</Link>
         </Box>
-
-
+        <Link to={"/home"}>Home page</Link>
 
       </Form>
     </DefaultLayout>
