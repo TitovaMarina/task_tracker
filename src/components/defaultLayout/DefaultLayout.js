@@ -8,12 +8,12 @@ const Content = styled.div`
   height: 83vh;
 `
 
-const DefaultLayout = ({ title, headerChildren, children }) => {
+const DefaultLayout = ({ title, button, children }) => {
 
   return(
     <Wrapper>
       <Header title={title}>
-        {headerChildren}
+        { title === "Home page" ? button : null}
       </Header>
       <Content>
         {children}

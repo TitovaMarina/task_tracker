@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
+import { Description } from "@mui/icons-material";
 
 const StyledCardContainer = styled.div`
   margin: 10px;
@@ -24,7 +25,12 @@ const StyledTitle = styled.h1`
   text-align: end;
 `
 
-const Card = ({ title }) => {
+const Card = ({ id, name, onRemoveClick, onUpdateClick }) => {
+
+  const removeClick = () => {
+		onRemoveClick(id);
+	};
+
 
   return(
       <StyledCardContainer>
@@ -36,10 +42,10 @@ const Card = ({ title }) => {
             justifyContent: 'flex-end'
           }}
           >
-          <IconButton color="primary" aria-label="edit" component="span">
+          {/* <IconButton color="primary" aria-label="edit" component="span">
             <EditIcon />
-          </IconButton>
-          <IconButton color="primary" aria-label="delete" component="span">
+          </IconButton> */}
+          <IconButton color="primary" aria-label="delete" component="span" onClick={removeClick}>
             <DeleteIcon />
           </IconButton>
         </Box>
@@ -47,7 +53,7 @@ const Card = ({ title }) => {
 
         <Box p="10px" justifyContent="flex-end" >
           <StyledTitle>
-            {title}
+            {name}
           </StyledTitle>
         </Box>
 

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApolloClient } from '@apollo/client';
+import styled from 'styled-components';
 
 import useAuthUser from '../globals/AuthUser';
+import useCreateProject from '../hooks_mutations/useCreateProject';
+import useRemoveProject from '../hooks_mutations/useRemoveProject';
 
-import styled from 'styled-components';
 import Button from '@mui/material/Button';
-
 import DefaultLayout from "../components/defaultLayout";
 import Card from "../components/card";
+import CreateCard from "../components/createCard";
 
 const StyledCardBox = styled.div`
   margin: 10px;
@@ -16,16 +18,6 @@ const StyledCardBox = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-`
-const StyledCardContainer = styled.button`
-  margin: 10px;
-  height: 95px;
-  min-width: 230px;
-  width: 250px;
-
-  /* border: 1px solid #cccccc;
-  border-radius: 10px;
-  background-color: #e2e2e2; */
 `
 
 const Home = () => {
@@ -50,17 +42,27 @@ const Home = () => {
 		}
 	}, [user, isLoading]);
 
+  const { create, loading, error } = useCreateProject();
+  const { remove } = useRemoveProject();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return(
-    <DefaultLayout title="Home page">
+    <DefaultLayout title="Home page" button={<Button variant="outlined" onClick={handleLogoutClick}>Log out</Button>}>
       <StyledCardBox>
-        <StyledCardContainer>+</StyledCardContainer>
-        <Card title="1st card"></Card>
-        <Card title="2nd card"></Card>
-        <Card title="3d card"></Card>
-        <Card title="4th card"></Card>
+        <CreateCard open={open} handleOpen={handleOpen} handleClose={handleClose} entity="project" handleLogoutClick={handleLogoutClick} createRequest={create} isLoading={loading} error={error} />
+        {user?.projects?.map((project)=>(
+          <Card
+            id={project.id}
+            name={project.name}
+            onRemoveClick={remove}
+          />
+        ))}
       </StyledCardBox>
 
-      <Button variant="outlined" onClick={handleLogoutClick}>Log out</Button>
+
     </DefaultLayout>
   );
 }

@@ -16,9 +16,9 @@ const StyledTitle = styled.h1`
   font-size: 25px;
 `
 
-const StyledBox = styled.h1`
-  display: flex;
-  justify-content: flex-end;
+const StyledBox = styled.div`
+    position: absolute;
+    right: 15px;
 `
 
 const Header = ({ title, children }) => {
